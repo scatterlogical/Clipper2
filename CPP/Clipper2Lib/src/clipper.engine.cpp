@@ -46,7 +46,7 @@ namespace Clipper2Lib {
   struct HorzSegSorter {
     inline bool operator()(const HorzSegment& hs1, const HorzSegment& hs2)
     {
-      if (!hs1.right_op || !hs2.right_op) return (hs1.right_op);
+      if (!hs1.right_op || !hs2.right_op) return ((bool)hs1.right_op);
       return  hs2.left_op->pt.x > hs1.left_op->pt.x;
     }
   };
@@ -70,7 +70,7 @@ namespace Clipper2Lib {
 
   inline bool IsHotEdge(const Active& e)
   {
-    return (e.outrec);
+    return ((bool)e.outrec);
   }
 
 
@@ -2016,7 +2016,7 @@ namespace Clipper2Lib {
   {
     OutPt* op = hs.left_op;
     OutRec* outrec = GetRealOutRec(op->outrec);
-    bool outrecHasEdges = outrec->front_edge;
+    bool outrecHasEdges = (bool)outrec->front_edge;
     int64_t curr_y = op->pt.y;
     OutPt* opP = op, * opN = op;
     if (outrecHasEdges)
